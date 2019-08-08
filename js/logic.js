@@ -1,15 +1,15 @@
 
 var score=0;
-var sec=30;
+var sec=0;
 function actionGame(x){
     targetAppear=setInterval(action,x);
 }
 
 function action(){
-    if(sec>0){
-        var x=Math.random()*800;
+    if(score<5){
+    var x=Math.random()*800;
     var y=Math.random()*800;
-    var $obj=$("<b id='bid'>◎</b>"); 
+    var $obj=$("<div class='container'><div class='dot'></div><div class='pulse'></div><div class='pulse1'></div></div>"); 
     var obj=$obj.get(0);
     obj.style.position="absolute";
     obj.style.left=x+'px';
@@ -19,11 +19,12 @@ function action(){
     $obj.fadeIn(2000);
     $obj.fadeOut(2000,function(e){
     $obj.remove();
+    score+=1;
     });
-    $("#score").text("score:"+score);
-    $obj.css({"cursor":"pointer","color":"red","font-size":"25px"}).click(function(e){
+    $("#score").text("miss:"+score);
+    $obj.css({"cursor":"crosshair","color":"red","font-size":"25px"}).click(function(e){
         $(this).remove();
-        score+=5;
+        
     });
 
     }else{
@@ -36,27 +37,27 @@ function action(){
 
 function over(){
         clearInterval(calTime);
-        alert("你的得分:"+score);
+        alert("你坚持了:"+sec+"秒");
         clearInterval(targetAppear);
-        $(".div").show();
+        $(".div1").show();
 }
 //加载单击事件
 $(function(e){
     $("#easy").click(function(){
         $("#bid").remove();
-        $(".div").hide();
+        $(".div1").hide();
         time();
-         actionGame(900); 
+         actionGame(700); 
         score=0;
-        sec=30;
+        sec=0;
     });
     $("#hard").click(function(){
         $("#bid").remove();
-        $(".div").hide();
+        $(".div1").hide();
         time();
         actionGame(500); 
        score=0;
-       sec=30;
+       sec=0;
    });
 
 });
@@ -81,7 +82,7 @@ $(function(e){
 function time(){
     calTime=setInterval(function(){
         $("#time").text("倒计时:"+sec);
-        sec-=1;
+        sec+=1;
 
     },1000)     
 } 

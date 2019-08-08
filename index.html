@@ -1,6 +1,17 @@
 <html>
 
 <head>
+    <style>
+            /* General Styles */
+            center > h4 { color: #c5c5c5; margin-top: 50px; }
+            body { margin: 0; font-family: Arial; background-color: #fff; }
+            ul#three-clean-buttons-freebie { display: table; list-style: none; margin: 0 auto; padding: 0; }
+            ul#three-clean-buttons-freebie > li { float: left; margin-right: 20px; margin-bottom: 20px; padding: 10px 10px; }
+            ul#three-clean-buttons-freebie > li:last-child { margin-right: 0; }
+            ul#three-clean-buttons-freebie > li > span { margin-bottom: 10px; }
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/main.css"/>
     <script src="js/common/jquery-3.2.1.min.js"></script>
@@ -9,15 +20,33 @@
 </head>
 
 <body>
-        
     <div class="main">
         <h1 id="score" style="text-align:left"></h1>
         <h3 id="time" style="text-align:left"></h3>
-            <div class="div">
-                    
-                    <input id='easy' type="button" value="简单模式"/>
-                    <input id='hard' type="button" value="困难模式"/>
-                <h1 >快速点击屏幕上出现的红靶</h1>
+            <div class="div1">
+                    <div id="easy"><ul id="three-clean-buttons-freebie">
+                            <li>
+                                <div class="three-clean-buttons">
+                                    <div class="clean-button">
+                                        <span class="text">简单模式</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="hard">
+                        <ul id="three-clean-buttons-freebie">
+                                <li>
+                                    <div class="three-clean-buttons">
+                                        <div class="clean-button">
+                                            <span class="text">困难模式</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                    </div>
+                        
+                <h1 id="font">快速点击屏幕上出现的红靶</h1>
             </div>
     </div>
 </body>
