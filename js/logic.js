@@ -1,36 +1,40 @@
 
-var score=0;
+var life=10;
 var sec=0;
-
 /*根据传入的值决定靶子出现的速度*/ 
 function actionGame(x){
     targetAppear=setInterval(action,x);
+
 }
 
 /*加载屏幕上的靶子*/
 function action(){
-    if(score<5){
-    var x=Math.random()*800;
+    $("#life").text("生命:"+life);
+    if(life>0){
+    var x=Math.random()*1000;
     var y=Math.random()*800;
-    var $obj=$("<div class='container'><div class='dot'></div><div class='pulse'></div><div class='pulse1'></div></div>"); 
+    var $obj=$("<div id='target'><div class='dot'></div><div class='pulse'></div><div class='pulse1'></div></div>"); 
+    $obj.css("display","none");
     var obj=$obj.get(0);
     obj.style.position="absolute";
     obj.style.left=x+'px';
     obj.style.top=y+'px';
     $(".main").append($obj);
-    $obj.hide();
-    $obj.fadeIn(2000);
-    $obj.fadeOut(2000,function(e){
-    $obj.remove();
-    score+=1;
+
+    $($obj).fadeIn(1500);
+    $($obj).fadeOut(2000,function(e){
+    $(this).remove();
+    life-=1;
+    
     });
-    $("#score").text("miss:"+score);
-    $obj.css({"cursor":"crosshair","color":"red","font-size":"25px"}).click(function(e){
+   
+    $($obj).click(function(e){
         $(this).remove();
+        life+=2;
         
     });
-
     }else{
+        $("#target").remove();
         over(); 
         
     }
@@ -40,9 +44,11 @@ function action(){
 
 /*游戏结束*/ 
 function over(){
+        clearInterval(targetAppear);
+
         clearInterval(calTime);
         alert("你坚持了:"+sec+"秒");
-        clearInterval(targetAppear);
+        
         $(".div1").show();
 }
 
@@ -50,22 +56,25 @@ function over(){
 $(function(e){
     //单击简单模式
     $("#easy").click(function(){
-        $("#bid").remove();
+        
         $(".div1").hide();
         time();
-         actionGame(700); 
-        score=0;
+         actionGame(1200); 
+         life=10;
+        
         sec=0;
     });
     //单击困难模式
     $("#hard").click(function(){
-        $("#bid").remove();
+        
         $(".div1").hide();
         time();
-        actionGame(500); 
-       score=0;
+        actionGame(800); 
+        life=10;
+       
        sec=0;
    });
+  
 
 });
 
@@ -90,7 +99,8 @@ $(function(e){
 /*计时的代码*/
 function time(){
     calTime=setInterval(function(){
-        $("#time").text("倒计时:"+sec);
+        $("#time").text("计时:"+sec);
+        
         sec+=1;
 
     },1000)     
