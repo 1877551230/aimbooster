@@ -1,10 +1,13 @@
 
 var score=0;
 var sec=0;
+
+/*根据传入的值决定靶子出现的速度*/ 
 function actionGame(x){
     targetAppear=setInterval(action,x);
 }
 
+/*加载屏幕上的靶子*/
 function action(){
     if(score<5){
     var x=Math.random()*800;
@@ -35,14 +38,17 @@ function action(){
    
 }
 
+/*游戏结束*/ 
 function over(){
         clearInterval(calTime);
         alert("你坚持了:"+sec+"秒");
         clearInterval(targetAppear);
         $(".div1").show();
 }
+
 //加载单击事件
 $(function(e){
+    //单击简单模式
     $("#easy").click(function(){
         $("#bid").remove();
         $(".div1").hide();
@@ -51,6 +57,7 @@ $(function(e){
         score=0;
         sec=0;
     });
+    //单击困难模式
     $("#hard").click(function(){
         $("#bid").remove();
         $(".div1").hide();
@@ -79,6 +86,8 @@ $(function(e){
 }*/
 
 /*游戏计时*/
+
+/*计时的代码*/
 function time(){
     calTime=setInterval(function(){
         $("#time").text("倒计时:"+sec);

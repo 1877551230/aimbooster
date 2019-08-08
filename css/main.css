@@ -19,6 +19,8 @@ h1,h3{
     background-color: rgb(15, 15, 14);
 }
 
+
+/*按钮的样式*/
 * { outline: none !important; }
 a, a:visited, a:hover, a:active { text-decoration: none; color: inherit; }
 
@@ -100,7 +102,7 @@ div.clean-button:active > span.text
 	border: 1px solid #03507e;
 }
 
-
+/*靶子的样式*/
 @keyframes warn {
     0% {
     transform: scale(0.3);
