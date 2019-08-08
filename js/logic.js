@@ -46,7 +46,7 @@ $(function(e){
         $("#bid").remove();
         $(".div").hide();
         time();
-         actionGame(1000); 
+         actionGame(900); 
         score=0;
         sec=30;
     });
@@ -54,7 +54,7 @@ $(function(e){
         $("#bid").remove();
         $(".div").hide();
         time();
-        actionGame(700); 
+        actionGame(500); 
        score=0;
        sec=30;
    });
@@ -62,7 +62,7 @@ $(function(e){
 });
 
 /*产生随机数*/ 
-function randomNum(minNum,maxNum){
+/*function randomNum(minNum,maxNum){
     switch(arguments.length){
         case 1:
             return
@@ -75,7 +75,7 @@ function randomNum(minNum,maxNum){
         default:
             return 0;
     }
-}
+}*/
 
 /*游戏计时*/
 function time(){
