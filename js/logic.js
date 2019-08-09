@@ -1,6 +1,9 @@
 
-var life=10;
+var life=5;
 var sec=0;
+var score=0;
+var flag=0;
+var acu=0;
 /*根据传入的值决定靶子出现的速度*/ 
 function actionGame(x){
     targetAppear=setInterval(action,x);
@@ -9,7 +12,10 @@ function actionGame(x){
 
 /*加载屏幕上的靶子*/
 function action(){
+    acu=(score/flag).toFixed(2);
     $("#life").text("生命:"+life);
+    $("#score").text("准确度:"+acu+"%");
+    
     if(life>0){
     var x=Math.random()*1000;
     var y=Math.random()*800;
@@ -21,18 +27,32 @@ function action(){
     obj.style.top=y+'px';
     $(".main").append($obj);
 
-    $($obj).fadeIn(1500);
-    $($obj).fadeOut(2000,function(e){
+    $obj.fadeIn(1500);
+    $obj.fadeOut(2500,function(e){
     $(this).remove();
     life-=1;
-    
     });
    
-    $($obj).click(function(e){
-        $(this).remove();
-        life+=2;
+    $(".main:not(#target)").click(function(e){
+        e.stopPropagation();
+        
+        flag+=1;
         
     });
+   
+        $obj.click(function(e){
+        e.stopPropagation();
+        $(this).remove();
+        score+=100;
+        flag+=1;
+        life+=1;
+        
+       
+        
+    });
+    
+    
+   
     }else{
         $("#target").remove();
         over(); 
@@ -54,12 +74,14 @@ function over(){
 
 //加载单击事件
 $(function(e){
+    $("#life").text("生命:"+10);
+ $("#score").text("准确度:"+0+"%");
     //单击简单模式
     $("#easy").click(function(){
         
         $(".div1").hide();
         time();
-         actionGame(1200); 
+         actionGame(1000); 
          life=10;
         
         sec=0;
@@ -104,4 +126,5 @@ function time(){
         sec+=1;
 
     },1000)     
+    
 } 
